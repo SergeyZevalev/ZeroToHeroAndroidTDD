@@ -1,0 +1,30 @@
+package ru.easycode.zerotoheroandroidtdd
+
+import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.launch
+
+class MainViewModel(
+    private val liveDataWrapper: LiveDataWrapper,
+    private val repository: Repository
+) : ViewModel(), ObserverImpl {
+
+    fun load() {
+        liveDataWrapper.update(UiState.ShowProgress)
+        viewModelScope.launch {
+            repository.load()
+            liveDataWrapper.update(UiState.ShowData)
+        }
+    }
+
+    override fun observe(lifecycleOwner: LifecycleOwner, observer: Observer<UiState>) {
+        liveDataWrapper.observe(lifecycleOwner, observer)
+    }
+
+}
+
+interface ObserverImpl {
+    fun observe(lifecycleOwner: LifecycleOwner, observer: Observer<UiState>) = Unit
+}

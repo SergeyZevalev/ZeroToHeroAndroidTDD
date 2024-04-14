@@ -1,7 +1,9 @@
 package ru.easycode.zerotoheroandroidtdd.list
 
 import androidx.lifecycle.LiveData
+import androidx.recyclerview.widget.DiffUtil
 import org.junit.Assert.assertEquals
+import ru.easycode.zerotoheroandroidtdd.core.BundleWrapper
 
 interface FakeListLiveDataWrapper : ListLiveDataWrapper.All {
 
@@ -24,6 +26,10 @@ interface FakeListLiveDataWrapper : ListLiveDataWrapper.All {
         }
 
         override fun liveData(): LiveData<List<CharSequence>> {
+            throw IllegalStateException("not used in tests")
+        }
+
+        override fun getDiffResult(): DiffUtil.DiffResult {
             throw IllegalStateException("not used in tests")
         }
 

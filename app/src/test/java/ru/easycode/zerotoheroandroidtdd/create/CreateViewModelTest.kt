@@ -49,7 +49,7 @@ class CreateViewModelTest {
         clearViewModel.checkClearCalled(CreateViewModel::class.java)
     }
 }
-
+//
 private interface FakeClearViewModel : ClearViewModel {
 
     fun checkClearCalled(expected: Class<out ViewModel>)

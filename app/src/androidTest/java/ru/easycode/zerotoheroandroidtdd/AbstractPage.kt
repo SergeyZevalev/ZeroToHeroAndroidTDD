@@ -1,6 +1,7 @@
 package ru.easycode.zerotoheroandroidtdd
 
 import android.widget.FrameLayout
+import android.widget.LinearLayout
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.assertion.ViewAssertions.doesNotExist
 import androidx.test.espresso.assertion.ViewAssertions.matches
@@ -14,7 +15,7 @@ abstract class AbstractPage(protected val root: Int) {
     fun checkVisibleNow() {
         onView(
             allOf(
-                isAssignableFrom(FrameLayout::class.java),
+                isAssignableFrom(LinearLayout::class.java),
                 withId(root)
             )
         ).check(matches(isDisplayed()))
@@ -23,7 +24,7 @@ abstract class AbstractPage(protected val root: Int) {
     fun checkNotVisibleNow() {
         onView(
             allOf(
-                isAssignableFrom(FrameLayout::class.java),
+                isAssignableFrom(LinearLayout::class.java),
                 withId(root)
             )
         ).check(doesNotExist())
